@@ -19,9 +19,9 @@ jobs:
           java-version: 11
           distribution: 'adopt'  # Specify the distribution (adopt, openjdk, zulu, etc.)
 
-      - name: Build with Eclipse
-        run: eclipse -nosplash -application org.eclipse.jdt.apt.core.aptBuild -data . -build file://${{ github.workspace }}/src
-
+      - name: Build with Gradle
+        run: ./gradlew build
+        
       - name: Run JUnit Tests
         run: ./gradlew test  # or use your preferred build tool's command
 
