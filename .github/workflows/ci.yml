@@ -1,0 +1,26 @@
+name: Java CI with Eclipse
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set Up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11
+
+      - name: Build with Eclipse
+        run: eclipse -nosplash -application org.eclipse.jdt.apt.core.aptBuild -data . -build file://${{ github.workspace }}/src
+
+      - name: Run JUnit Tests
+        run: ./gradlew test  # or use your preferred build tool's command
+
