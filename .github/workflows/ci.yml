@@ -17,6 +17,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: 11
+          distribution: 'adopt'  # Specify the distribution (adopt, openjdk, zulu, etc.)
 
       - name: Build with Eclipse
         run: eclipse -nosplash -application org.eclipse.jdt.apt.core.aptBuild -data . -build file://${{ github.workspace }}/src
