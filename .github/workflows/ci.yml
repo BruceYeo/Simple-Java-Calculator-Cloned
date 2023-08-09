@@ -1,9 +1,9 @@
-name: Java CI with Eclipse
+name: Java CI with Apache Ant
 
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
@@ -17,10 +17,12 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: 11
-          distribution: 'adopt'  # Specify the distribution (adopt, openjdk, zulu, etc.)
 
-      - name: Build with Gradle
-        run: ./gradlew build
-        
+      - name: Install Apache Ant
+        run: sudo apt-get install ant
+
+      - name: Build with Apache Ant
+        run: ant  # Assuming you have an Ant build.xml file
+
       - name: Run JUnit Tests
-        run: ./gradlew test --tests "simplejavacalculatorTest.*"
+        run: ant test  # Replace 'test' with the appropriate target in your build.xml
